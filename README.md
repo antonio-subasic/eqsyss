@@ -31,7 +31,7 @@ Given the following equation-system:
 
 The augmented matrix would look like this:
 
-<img src="augmented-matrix.svg" style="background-color: white;">
+![](augmented-matrix.svg)
 
 ## Input File
 
@@ -59,7 +59,7 @@ The program calculates the solutions for the equation-system and writes them to 
 
 *In our case* the **first solution** would be **a**, the **second solution** **b**, ...
 
-```json
+```
 "solutions": [
     0.000375, // a
     -0.05625, // b
