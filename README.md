@@ -1,23 +1,15 @@
-eqsyss is an [equation-system](https://en.wikipedia.org/wiki/System_of_equations)-solver written in TypeScript
+eqsyss is an [equation-system](https://en.wikipedia.org/wiki/System_of_equations)-solver written in Rust
 
-# Requirements
+# Download
 
-- [Node.js](https://nodejs.org/en/)
-- [TypeScript](https://www.typescriptlang.org/)
-
-# Setup
-
-1. Download
-    - [Download the Source Code](https://github.com/antonio-subasic/eqsyss/archive/refs/heads/main.zip) or run `git clone https://github.com/antonio-subasic/eqsyss.git`
-    - Run `npm install` in the *eqsyss* directory to install all dependencies
-
-1. Compile the program with `tsc`
-
-1. Run the program with `node ./dist/eqsyss.js <input file>`
+1. [Download the Source Code](https://github.com/antonio-subasic/eqsyss/archive/refs/heads/main.zip)
+1. Unzip the folder
+1. Run `cargo build --release`
+1. Copy the executable from `target/release/` to `/usr/local/bin/`: `sudo cp target/release/eqsyss /usr/local/bin/eqsyss`
 
 # Usage
 
-The program reads an equation-system in the form of an [augmented matrix](https://en.wikipedia.org/wiki/Augmented_matrix) from an input file and calculates the solutions
+The program reads an equation-system in the form of an [augmented matrix](https://en.wikipedia.org/wiki/Augmented_matrix) from an `input.json` file and calculates the solutions
 
 ## Equation System
 
@@ -33,17 +25,9 @@ The augmented matrix would look like this:
 
 ![](augmented-matrix.svg)
 
-## Input File
+## Input
 
-The augmented matrix in a [normal input file](input.txt) would be represented like this:
-```
-0 0 0 1 50
-8000 400 20 1 100
-125000 2500 50 1 130
-1000000 10000 100 1 210
-```
-
-The augmented matrix in a [json input file](input.json) would be represented like this:
+The augmented matrix in the [json input file](input.json) would be represented like this:
 ```json
 [
     [ 0, 0, 0, 1, 50 ],
@@ -53,17 +37,16 @@ The augmented matrix in a [json input file](input.json) would be represented lik
 ]
 ```
 
-## Output File
+## Output
 
-The program calculates the solutions for the equation-system and writes them to an [output.json](output.json) file. The solutions are listed at the end and in order depending on the given equation system, along with all matrices from the system and their corresponding determinants.
+The program splits the large matrix into sub-matrices and calculates each sub-matrix' determinant (similar approach to [Cramer's rule](https://en.wikipedia.org/wiki/Cramer%27s_rule)). The sub-matrices and their determinants along with the solutions for the entire matrix are written into a `output.json` file. The solutions to the entire matrix are also printed to the console.
 
-*In our case* the **first solution** would be **a**, the **second solution** **b**, ...
+*In our case* the 
+1. solution would be **a**
+1. solution would be **b**
+1. solution would be **c**
+1. solution would be **d**
 
-```
-"solutions": [
-    0.000375, // a
-    -0.05625, // b
-    3.475, // c
-    50 // d
-]
+```bash
+[ 0.000375, -0.05625, 3.475, 50.0 ]
 ```
